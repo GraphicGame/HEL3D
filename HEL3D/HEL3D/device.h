@@ -7,25 +7,34 @@
 extern "C" {
 #endif
 	
-typedef struct color {
-	float r, g, b, a;
+typedef class color {
+public:
+	uint r, g, b, a;
+	color() {}
+	color(uint _r, uint _g, uint _b, uint _a)
+		:r(_r), g(_g), b(_b), a(_a)
+	{	
+	}
 } color;
-
-typedef unsigned int uint;
 
 class color_buffer {
 public:
 	color_buffer(uint width, uint height);
 	~color_buffer();
 public:
-	void write_color(uint x, uint y, color c);
-	void read_color(uint x, uint y, color *c);
-	void clear();
-	void flush();
+	HEL_API void write_color(uint x, uint y, color c);
+	HEL_API void read_color(uint x, uint y, color *c);
+	HEL_API void set_clear_color(color c);
+	HEL_API void clear(color c);
+	HEL_API void flush();
+private:
+	void gen_pixels();
+	bool dirty_; //TODO 
 private:
 	uint width_;
 	uint height_;
 	color *buffer_;
+	uchar *pixels_;
 };
 
 HEL_API bool device_create_window(uint width, uint height);

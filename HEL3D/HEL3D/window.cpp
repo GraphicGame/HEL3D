@@ -102,7 +102,6 @@ HEL_API bool device_create_window(uint width, uint height) {
 
 	WNDCLASSEX winclass;
 	HWND hwnd;
-	MSG msg;
 
 	winclass.cbSize = sizeof(WNDCLASSEX);
 	winclass.style = CS_DBLCLKS | CS_OWNDC | CS_HREDRAW | CS_VREDRAW;
