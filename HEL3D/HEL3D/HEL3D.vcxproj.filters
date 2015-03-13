@@ -13,13 +13,36 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="src\window_launcher">
+    <Filter Include="src\graphics_device">
+      <UniqueIdentifier>{b0c770f7-5b35-4288-9d9a-690069555473}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\framework">
+      <UniqueIdentifier>{bdea4242-20c0-4a33-afe3-57ed9ff6f20f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\window">
       <UniqueIdentifier>{07dcd7ae-fde7-4580-83b7-0d027a0d7919}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>src\window_launcher</Filter>
+    <ClCompile Include="color_buffer.cpp">
+      <Filter>src\graphics_device</Filter>
     </ClCompile>
+    <ClCompile Include="framework.cpp">
+      <Filter>src\framework</Filter>
+    </ClCompile>
+    <ClCompile Include="window.cpp">
+      <Filter>src\window</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="device.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="common_header.h">
+      <Filter>inc</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

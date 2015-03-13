@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HEL3D", "HEL3D\HEL3D.vcxproj", "{35ED9621-3C36-4DA9-8F46-A3C87844169F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HEL3D_TestCases", "HEL3D_TestCases\HEL3D_TestCases.vcxproj", "{10B0BF78-7118-4BD5-A3AD-5A8F387D52B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -15,6 +17,10 @@ Global
 		{35ED9621-3C36-4DA9-8F46-A3C87844169F}.Debug|Win32.Build.0 = Debug|Win32
 		{35ED9621-3C36-4DA9-8F46-A3C87844169F}.Release|Win32.ActiveCfg = Release|Win32
 		{35ED9621-3C36-4DA9-8F46-A3C87844169F}.Release|Win32.Build.0 = Release|Win32
+		{10B0BF78-7118-4BD5-A3AD-5A8F387D52B6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{10B0BF78-7118-4BD5-A3AD-5A8F387D52B6}.Debug|Win32.Build.0 = Debug|Win32
+		{10B0BF78-7118-4BD5-A3AD-5A8F387D52B6}.Release|Win32.ActiveCfg = Release|Win32
+		{10B0BF78-7118-4BD5-A3AD-5A8F387D52B6}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
