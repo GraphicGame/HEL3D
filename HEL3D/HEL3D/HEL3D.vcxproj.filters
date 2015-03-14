@@ -22,6 +22,12 @@
     <Filter Include="src\window">
       <UniqueIdentifier>{07dcd7ae-fde7-4580-83b7-0d027a0d7919}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\image">
+      <UniqueIdentifier>{02520fad-ca94-48ed-b1f7-baea10ca8288}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utils">
+      <UniqueIdentifier>{e5e58470-57bb-4a78-8952-1ad12f103caa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="color_buffer.cpp">
@@ -33,6 +39,12 @@
     <ClCompile Include="window.cpp">
       <Filter>src\window</Filter>
     </ClCompile>
+    <ClCompile Include="image_win32.cpp">
+      <Filter>src\image</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>src\utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="device.h">
@@ -42,6 +54,12 @@
       <Filter>inc</Filter>
     </ClInclude>
     <ClInclude Include="common_header.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="image.h">
       <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>

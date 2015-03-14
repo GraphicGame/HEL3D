@@ -7,6 +7,7 @@
 #include "device.h"
 #include "framework.h"
 #include "common_header.h"
+#include "image.h"
 
 #define WINDOW_CLASS_NAME "WIN_LAUNCHER"
 
@@ -75,6 +76,8 @@ LRESULT CALLBACK window_proc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam) 
 		}
         return 0;
     case WM_DESTROY:
+		img_dispose_decoder();
+		::CoUninitialize();
         PostQuitMessage(0);
         return 0;
     default:
@@ -93,6 +96,9 @@ static void init_console() {
 }
 
 HEL_API bool device_create_window(uint width, uint height) {
+	::CoInitialize(NULL);
+	img_init_decoder();
+
 	assert(width > 0 && width < 3000);
 	assert(width > 0 && width < 3000);
 	s_WindowWidth = width;
@@ -165,7 +171,10 @@ HEL_API void device_register_draw_func(FUNC draw_func) {
 	on_draw = draw_func;
 }
 
-HEL_API void device_log(const char *msg) {
-	printf(msg);
-	printf("\n");
+HEL_API void device_log(const char *format, ...) {
+	va_list ap;
+	va_start(ap, format);
+	printf(format, ap);
+	va_end(ap);
+	exit(1);
 }
