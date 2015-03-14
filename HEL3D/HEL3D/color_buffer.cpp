@@ -172,13 +172,17 @@ void color_buffer::_gen_pixels() {
 	if (pixels_ == nullptr) {
 		pixels_ = new uchar[width_ * height_ * 4];
 	}
-	uint sz = width_ * height_;
-	for (int i = 0; i < sz; i++) {
-		color c = buffer_[i];
-		pixels_[i * 4] = (c.r) & 0xff;
-		pixels_[i * 4 + 1] = (c.g) & 0xff;
-		pixels_[i * 4 + 2] = (c.b) & 0xff;
-		pixels_[i * 4 + 3] = (c.a) & 0xff;
+	uint idx = 0;
+	for (int row = height_ - 1; row >= 0; row--) {
+		for (int col = 0; col < width_; col++) {
+			uint i = row * width_ + col;
+			color c = buffer_[i];
+			pixels_[idx * 4] = c.r & 0xff;
+			pixels_[idx * 4 + 1] = c.g & 0xff;
+			pixels_[idx * 4 + 2] = c.b & 0xff;
+			pixels_[idx * 4 + 3] = c.a & 0xff;
+			++idx;
+		}
 	}
 }
 
