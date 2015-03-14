@@ -40,9 +40,11 @@ HEL_API void color_buffer::set_clear_color(color c) {
 }
 
 HEL_API void color_buffer::clear(color c) {
-	memset(buffer_, 0, width_ * height_ * sizeof(color));
-	glClearColor(c.r / 255.0f, c.g / 255.0f, c.b / 255.0f, c.a / 255.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	//TODO need improve performance.
+	uint sz = width_ * height_;
+	for (uint i = 0; i < sz; i++) {
+		buffer_[i] = c;
+	}
 }
 
 HEL_API void color_buffer::flush() {

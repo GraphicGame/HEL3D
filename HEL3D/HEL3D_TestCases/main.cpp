@@ -6,7 +6,7 @@
 const int WW = 960;
 const int WH = 640;
 
-color ClearColor = {0, 0, 0, 0};
+color ClearColor = {0, 255, 255, 255};
 color_buffer *CB = NULL;
 
 static void on_draw() {
