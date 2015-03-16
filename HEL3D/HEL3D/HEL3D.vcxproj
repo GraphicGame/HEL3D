@@ -83,7 +83,9 @@
     <ClCompile Include="color_buffer.cpp" />
     <ClCompile Include="image_win32.cpp" />
     <ClCompile Include="framework.cpp" />
+    <ClCompile Include="matrix.cpp" />
     <ClCompile Include="utils.cpp" />
+    <ClCompile Include="vector.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +93,7 @@
     <ClInclude Include="image.h" />
     <ClInclude Include="device.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="math.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
