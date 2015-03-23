@@ -113,20 +113,20 @@ void vec4_normalize(vec4 *va) {
 	va->w /= len;
 }
 
-void mat_mul_4X4(mat_4X4 *ma, mat_4X4 **mb, mat_4X4 *mr) {
-	/*for (int row = 0; row < 4; row++) {
+void mat_mul_4X4(mat_4X4 *ma, mat_4X4 *mb, mat_4X4 *mr) {
+	for (int row = 0; row < 4; row++) {
 		for (int col = 0; col < 4; col++) {
-			int v = 0;
+			float v = 0;
 			for (int i = 0; i < 4; i++) {
-				v += (ma[row][i] * mb[i][col]);
+				v += (ma->m[row][i] * mb->m[i][col]);
 			}
 			mr->m[row][col] = v;
 		}
-	}*/
+	}
 }
 
 void mat_mul_1X4_4X4(vec4 *va, mat_4X4 *mb, vec4 *vr) {
-	/*vr->x = va->x * mb->m00 + va->y * mb->m10 + va->z * mb->m20 + mb->m30;
+	vr->x = va->x * mb->m00 + va->y * mb->m10 + va->z * mb->m20 + mb->m30;
 	vr->y = va->x * mb->m01 + va->y * mb->m11 + va->z * mb->m21 + mb->m31;
-	vr->z = va->x * mb->m02 + va->y * mb->m12 + va->z * mb->m22 + mb->m32;*/
+	vr->z = va->x * mb->m02 + va->y * mb->m12 + va->z * mb->m22 + mb->m32;
 }

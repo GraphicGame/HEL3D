@@ -33,6 +33,9 @@
     <ClInclude Include="inc\helmath.h">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="inc\render_object.h">
+      <Filter>inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\color_buffer.cpp">
@@ -60,6 +63,12 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\window.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\simple_model.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render_object.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

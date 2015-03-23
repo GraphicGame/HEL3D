@@ -4,6 +4,7 @@
 
 #include "device.h"
 #include "image.h"
+#include "render_object.h"
 
 const int WW = 960;
 const int WH = 640;
@@ -11,6 +12,7 @@ const int WH = 640;
 color ClearColor = {0, 0, 0, 255};
 color_buffer *CB = nullptr;
 image_data *img_data = nullptr;
+render_object *RO = nullptr;
 
 static void on_draw() {
 	CB->clear(ClearColor);
@@ -45,6 +47,9 @@ int main(int argc, char *argv[]) {
 	device_create_window(WW + 30, WH + 30);
 
 	load_img("E:/test.jpg");
+
+	RO = render_create_object();
+	RO->load_model("E://simple_model.txt");
 
 	device_register_draw_func(on_draw);
 	device_main_loop();

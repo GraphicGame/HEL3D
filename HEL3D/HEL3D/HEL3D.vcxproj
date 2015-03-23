@@ -16,6 +16,7 @@
     <ClInclude Include="inc\framework.h" />
     <ClInclude Include="inc\image.h" />
     <ClInclude Include="inc\helmath.h" />
+    <ClInclude Include="inc\render_object.h" />
     <ClInclude Include="inc\utils.h" />
   </ItemGroup>
   <ItemGroup>
@@ -24,6 +25,8 @@
     <ClCompile Include="src\image_win32.cpp" />
     <ClCompile Include="src\matrix.cpp" />
     <ClCompile Include="src\primitives.cpp" />
+    <ClCompile Include="src\render_object.cpp" />
+    <ClCompile Include="src\simple_model.cpp" />
     <ClCompile Include="src\test_colorbuffer.cpp" />
     <ClCompile Include="src\utils.cpp" />
     <ClCompile Include="src\vector.cpp" />
