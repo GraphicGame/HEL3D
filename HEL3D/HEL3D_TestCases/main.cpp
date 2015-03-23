@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "device.h"
 #include "image.h"
@@ -24,6 +25,11 @@ static void on_draw() {
 				CB->write_color(col, row, color(0, 0, 255, 255));
 		}
 	}
+
+	for (int i = 0; i < 2000; i++) {
+		device_draw_line(CB, rand() % 960, rand() % 640, rand() % 960, rand() % 640, color(rand() % 255, rand() % 255, rand() % 255, 255));
+	}
+
 	CB->flush();
 }
 

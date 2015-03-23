@@ -10,6 +10,25 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="inc\common_header.h" />
+    <ClInclude Include="inc\device.h" />
+    <ClInclude Include="inc\framework.h" />
+    <ClInclude Include="inc\image.h" />
+    <ClInclude Include="inc\helmath.h" />
+    <ClInclude Include="inc\utils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\color_buffer.cpp" />
+    <ClCompile Include="src\framework.cpp" />
+    <ClCompile Include="src\image_win32.cpp" />
+    <ClCompile Include="src\matrix.cpp" />
+    <ClCompile Include="src\primitives.cpp" />
+    <ClCompile Include="src\test_colorbuffer.cpp" />
+    <ClCompile Include="src\utils.cpp" />
+    <ClCompile Include="src\vector.cpp" />
+    <ClCompile Include="src\window.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{35ED9621-3C36-4DA9-8F46-A3C87844169F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -53,7 +72,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_WIN32_WINNT=_WIN32_WINNT_WIN7;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\engine_labs\HEL3D\HEL3D.git\HEL3D\HEL3D\glew;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\engine_labs\HEL3D\HEL3D.git\HEL3D\HEL3D\glew;D:\engine_labs\HEL3D\HEL3D.git\HEL3D\HEL3D\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -79,23 +98,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="color_buffer.cpp" />
-    <ClCompile Include="image_win32.cpp" />
-    <ClCompile Include="framework.cpp" />
-    <ClCompile Include="matrix.cpp" />
-    <ClCompile Include="utils.cpp" />
-    <ClCompile Include="vector.cpp" />
-    <ClCompile Include="window.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="common_header.h" />
-    <ClInclude Include="image.h" />
-    <ClInclude Include="device.h" />
-    <ClInclude Include="framework.h" />
-    <ClInclude Include="math.h" />
-    <ClInclude Include="utils.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

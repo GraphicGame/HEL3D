@@ -1,5 +1,5 @@
-#ifndef math_h
-#define math_h
+#ifndef helmath_h
+#define helmath_h
 
 typedef struct {
 	union {
@@ -11,7 +11,7 @@ typedef struct {
 		};
 		float m[2];
 	};
-} vec2, mat_1X2;
+} vec2, mat_1X2, point2d;
 
 typedef struct {
 	union {
@@ -23,7 +23,7 @@ typedef struct {
 		};
 		float m[3];
 	};
-} vec3, mat_1X3;
+} vec3, mat_1X3, point3d;
 
 typedef struct {
 	union {
@@ -35,7 +35,7 @@ typedef struct {
 		};
 		float m[4];
 	};
-} vec4, mat_1X4;
+} vec4, mat_1X4, point4d;
 
 //vector...
 void vec2_add(vec2 *va, vec2 *vb, vec2 *vr);
