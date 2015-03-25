@@ -48,7 +48,7 @@ void mat_identity_4X4(mat_4X4 *m) {
 	m->m33 = 1;
 }
 
-void mat_mul_4X4(mat_4X4 *ma, mat_4X4 *mb, mat_4X4 *mr) {
+void mat_mul_4X4(const mat_4X4 *ma, const mat_4X4 *mb, mat_4X4 *mr) {
 	for (int row = 0; row < 4; row++) {
 		for (int col = 0; col < 4; col++) {
 			float v = 0;
@@ -60,7 +60,7 @@ void mat_mul_4X4(mat_4X4 *ma, mat_4X4 *mb, mat_4X4 *mr) {
 	}
 }
 
-void mat_mul_1X4_4X4(vec4 *va, mat_4X4 *mb, vec4 *vr) {
+void mat_mul_1X4_4X4(const vec4 *va, const mat_4X4 *mb, vec4 *vr) {
 	vr->x = va->x * mb->m00 + va->y * mb->m10 + va->z * mb->m20 + mb->m30;
 	vr->y = va->x * mb->m01 + va->y * mb->m11 + va->z * mb->m21 + mb->m31;
 	vr->z = va->x * mb->m02 + va->y * mb->m12 + va->z * mb->m22 + mb->m32;

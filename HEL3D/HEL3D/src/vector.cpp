@@ -44,6 +44,13 @@ vec4::vec4(float x, float y, float z, float w)
 
 }
 
+void vec4::copy(const vec4 *target) {
+	x = target->x;
+	y = target->y;
+	z = target->z;
+	w = target->w;
+}
+
 void vec2_add(vec2 *va, vec2 *vb, vec2 *vr) {
 	vr->x = va->x + vb->x;
 	vr->y = va->y + vb->y;

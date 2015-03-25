@@ -16,6 +16,34 @@ HEL_API point4d& camera::pos() {
 	return pos_;
 }
 
+HEL_API const mat_4X4 * camera::get_mat_camera() {
+	return &mat_camera_;
+}
+
+HEL_API const mat_4X4 * camera::get_mat_perspective() {
+	return &mat_perspective_;
+}
+
+HEL_API const mat_4X4 * camera::get_mat_screen() {
+	return &mat_screen_;
+}
+
+HEL_API float camera::get_view_d_h() {
+	return view_d_h_;
+}
+
+HEL_API float camera::get_view_d_v() {
+	return view_d_v_;
+}
+
+HEL_API float camera::get_viewport_width() {
+	return viewport_width_;
+}
+
+HEL_API float camera::get_viewport_height() {
+	return viewport_height_;
+}
+
 camera_euler::camera_euler() {
 	
 }

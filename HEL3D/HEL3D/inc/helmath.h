@@ -43,6 +43,7 @@ typedef struct vec4 {
 	};
 	vec4();
 	vec4(float x, float y, float z, float w);
+	void copy(const vec4 *target);
 } vec4, mat_1X4, point4d;
 
 void vec2_add(vec2 *va, vec2 *vb, vec2 *vr);
@@ -93,8 +94,8 @@ typedef struct mat_4X4 {
 } mat_4X4;
 
 void mat_identity_4X4(mat_4X4 *m);
-void mat_mul_4X4(mat_4X4 *ma, mat_4X4 *mb, mat_4X4 *mr);
-void mat_mul_1X4_4X4(vec4 *va, mat_4X4 *mb, vec4 *vr);
+void mat_mul_4X4(const mat_4X4 *ma, const mat_4X4 *mb, mat_4X4 *mr);
+void mat_mul_1X4_4X4(const vec4 *va, const mat_4X4 *mb, vec4 *vr);
 void mat_init_translation_matrix(mat_4X4 *m, float x, float y, float z);
 
 //plane.
