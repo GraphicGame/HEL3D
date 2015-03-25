@@ -52,3 +52,14 @@ void rpl_projective_2_screen(render_object *ro, camera *cam) {
 		vert->y = b - b * vert->y;
 	}
 }
+
+void rpl_rasterize(render_object *ro, color_buffer *cb) {
+	int sz = ro->vlist_trans_.size();
+	for (int i = 0; i < sz; i++) {
+		for (int j = i + 1; j < sz; j++) {
+			point4d vert1 = ro->vlist_trans_[i];
+			point4d vert2 = ro->vlist_trans_[j];
+			device_draw_line(cb, vert1.x, vert1.y, vert2.x, vert2.y, color(0, 0, 255, 255));
+		}
+	}
+}

@@ -22,6 +22,9 @@ color_buffer::~color_buffer() {
 }
 
 HEL_API void color_buffer::write_color(uint x, uint y, color c) {
+	if (x < 0 || x >= width_ || y < 0 || y >= height_) {
+		return;
+	}
 	uint i = y * width_ + x;
 	buffer_[i] = c;
 }

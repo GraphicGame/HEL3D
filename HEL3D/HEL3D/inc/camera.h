@@ -57,10 +57,10 @@ public:
 	camera_euler();
 	~camera_euler();
 public:
-	void setup_camera(point4d pos, vec4 angle,
+	HEL_API void setup_camera(point4d pos, vec4 angle,
 		float near, float far, float fov,
 		float viewport_width, float viewport_height);
-	void build_matrix() override;
+	HEL_API void build_matrix() override;
 private:
 	vec4 euler_angle_;
 };

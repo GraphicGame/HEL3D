@@ -3,6 +3,7 @@
 #include "helmath.h"
 
 #include <math.h>
+#include <assert.h>
 
 camera::camera() {
 	
@@ -44,6 +45,10 @@ HEL_API float camera::get_viewport_height() {
 	return viewport_height_;
 }
 
+HEL_API void camera::build_matrix() {
+	assert(false);
+}
+
 camera_euler::camera_euler() {
 	
 }
@@ -52,7 +57,7 @@ camera_euler::~camera_euler() {
 	
 }
 
-void camera_euler::setup_camera(point4d pos, vec4 angle, 
+HEL_API void camera_euler::setup_camera(point4d pos, vec4 angle, 
 	float near, float far, float fov, 
 	float viewport_width, float viewport_height) {
 	pos_ = pos;
@@ -61,7 +66,7 @@ void camera_euler::setup_camera(point4d pos, vec4 angle,
 	far_clip_z_ = far;
 	fov_ = fov;
 	viewport_width_ = viewport_width;
-	viewport_height = viewport_height;
+	viewport_height_ = viewport_height;
 	viewport_center_x_ = (viewport_width_ - 1) / 2;
 	viewport_center_y_ = (viewport_height_ - 1) / 2;
 	aspect_ratio_ = viewport_width_ / viewport_height_;
@@ -88,7 +93,7 @@ void camera_euler::setup_camera(point4d pos, vec4 angle,
 	clip_plane_bottom_.init(&p0, &vn);
 }
 
-void camera_euler::build_matrix() {
+HEL_API void camera_euler::build_matrix() {
 	mat_4X4 mat_translation;
 	mat_init_translation_matrix(&mat_translation, -pos_.x, -pos_.y, -pos_.z);
 	
