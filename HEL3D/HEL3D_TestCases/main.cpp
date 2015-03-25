@@ -5,6 +5,7 @@
 #include "device.h"
 #include "image.h"
 #include "render_object.h"
+#include "render_pipeline.h"
 
 const int WW = 960;
 const int WH = 640;
@@ -50,6 +51,10 @@ int main(int argc, char *argv[]) {
 
 	RO = render_create_object();
 	RO->load_model("E://simple_model.txt");
+	RO->world_pos_.x = 10;
+	RO->world_pos_.y = 10;
+	RO->world_pos_.z = 10;
+	rpl_local_2_world(RO);
 
 	device_register_draw_func(on_draw);
 	device_main_loop();

@@ -72,7 +72,7 @@ void simple_load_model(const char *path, render_object *ro) {
 		point4d vert = {
 			x, y, z, 1
 		};
-		ro->vlist_local_.push_back(vert);
+		ro->add_vertex(vert);
 	}
 
 	curr_line += num_vert;

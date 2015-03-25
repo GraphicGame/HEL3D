@@ -36,6 +36,12 @@
     <ClInclude Include="inc\render_object.h">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="inc\render_pipeline.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\camera.h">
+      <Filter>inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\color_buffer.cpp">
@@ -69,6 +75,15 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\render_object.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render_pipeline.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="inc\camera.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\plane.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

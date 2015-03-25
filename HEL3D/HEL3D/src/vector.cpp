@@ -2,6 +2,48 @@
 
 #include <math.h>
 
+vec2::vec2()
+: x(0), y(0)
+{
+	
+}
+
+vec2::vec2(float x, float y)
+: x(x), y(y)
+{
+	
+}
+
+vec3::vec3()
+: x(0), y(0), z(0)
+{
+
+}
+
+vec3::vec3(float x, float y, float z)
+: x(x), y(y), z(z)
+{
+
+}
+
+void vec3::init(float x, float y, float z) {
+	this->x = x;
+	this->y = y;
+	this->z = z;
+}
+
+vec4::vec4()
+: x(0), y(0), z(0), w(1)
+{
+
+}
+
+vec4::vec4(float x, float y, float z, float w)
+: x(x), y(y), z(z), w(w)
+{
+
+}
+
 void vec2_add(vec2 *va, vec2 *vb, vec2 *vr) {
 	vr->x = va->x + vb->x;
 	vr->y = va->y + vb->y;
@@ -111,22 +153,4 @@ void vec4_normalize(vec4 *va) {
 	va->y /= len;
 	va->z /= len;
 	va->w /= len;
-}
-
-void mat_mul_4X4(mat_4X4 *ma, mat_4X4 *mb, mat_4X4 *mr) {
-	for (int row = 0; row < 4; row++) {
-		for (int col = 0; col < 4; col++) {
-			float v = 0;
-			for (int i = 0; i < 4; i++) {
-				v += (ma->m[row][i] * mb->m[i][col]);
-			}
-			mr->m[row][col] = v;
-		}
-	}
-}
-
-void mat_mul_1X4_4X4(vec4 *va, mat_4X4 *mb, vec4 *vr) {
-	vr->x = va->x * mb->m00 + va->y * mb->m10 + va->z * mb->m20 + mb->m30;
-	vr->y = va->x * mb->m01 + va->y * mb->m11 + va->z * mb->m21 + mb->m31;
-	vr->z = va->x * mb->m02 + va->y * mb->m12 + va->z * mb->m22 + mb->m32;
 }

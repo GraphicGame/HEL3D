@@ -7,6 +7,14 @@
 #include "common_header.h"
 #include "helmath.h"
 
+enum poly_attr {
+	POLY_ATTR_2SIDE = 0,
+};
+
+enum poly_state {
+
+};
+
 struct polygon;
 struct polygon_independent;
 struct render_polygon_list;
@@ -17,10 +25,12 @@ public:
 	~render_object();
 
 	HEL_API void load_model(const char *path);
-	HEL_API void add_polygon();
-	HEL_API int get_num_polys() const;
+	HEL_API void add_vertex(point4d vert);
 	HEL_API void gen_render_polygon_list(render_polygon_list *rpl);
 
+	//Here should be private ?
+	//But it needs write a lots of getter/setter methods when private.
+	//So, so be it...
 	int id_;
 	std::string name_;
 	int state_;
