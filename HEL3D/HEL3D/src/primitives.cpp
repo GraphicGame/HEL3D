@@ -13,11 +13,10 @@ HEL_API void device_draw_line(color_buffer *cb, int x0, int y0, int x1, int y1, 
 		_swap(&x0, &x1);
 		_swap(&y0, &y1);
 	}
-	/*if (y0 > y1) {
-		_swap(&y0, &y1);
-	}*/
 	
 	if (x0 == x1) {
+		if (y0 > y1)
+			_swap(&y0, &y1);
 		for (int y = y0; y <= y1; y++) {
 			cb->write_color(x0, y, c);
 		}

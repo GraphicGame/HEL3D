@@ -54,12 +54,15 @@ void rpl_projective_2_screen(render_object *ro, camera *cam) {
 }
 
 void rpl_rasterize(render_object *ro, color_buffer *cb) {
-	int sz = ro->vlist_trans_.size();
-	for (int i = 0; i < sz; i++) {
-		for (int j = i + 1; j < sz; j++) {
-			point4d vert1 = ro->vlist_trans_[i];
-			point4d vert2 = ro->vlist_trans_[j];
-			device_draw_line(cb, vert1.x, vert1.y, vert2.x, vert2.y, color(0, 0, 255, 255));
-		}
+	color c(0, 0, 255, 255);
+	for (int i = 0; i < ro->poly_list_.size(); i++) {
+		polygon *poly = ro->poly_list_[i];
+		int *vert_index = poly->vertex_index_;
+		point4d vert1 = ro->vlist_trans_[vert_index[0]];
+		point4d vert2 = ro->vlist_trans_[vert_index[1]];
+		point4d vert3 = ro->vlist_trans_[vert_index[2]];
+		device_draw_line(cb, vert1.x, vert1.y, vert2.x, vert2.y, c);
+		device_draw_line(cb, vert2.x, vert2.y, vert3.x, vert3.y, c);
+		device_draw_line(cb, vert3.x, vert3.y, vert1.x, vert1.y, c);
 	}
 }
