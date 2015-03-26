@@ -63,6 +63,10 @@ void simple_load_model(const char *path, render_object *ro) {
 	int num_vert = atoi(line_tokens[1].c_str());
 	int num_poly = atoi(line_tokens[2].c_str());
 
+	ro->vlist_local_.clear();
+	ro->vlist_trans_.clear();
+	ro->poly_list_.clear();
+
 	++curr_line;
 	for (int i = 0; i < num_vert; i++) {
 		_split_line(lines[curr_line + i], line_tokens);

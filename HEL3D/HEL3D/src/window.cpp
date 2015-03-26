@@ -13,6 +13,7 @@
 
 typedef void(*FUNC)();
 static FUNC on_draw;
+static FUNC on_keyboard;
 
 static HWND s_Hwnd = NULL;
 static uint s_FPS = 30;
@@ -75,6 +76,11 @@ LRESULT CALLBACK window_proc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam) 
 			ReleaseDC(hwnd, hdc);
 		}
         return 0;
+	case WM_LBUTTONUP: 
+		if (on_keyboard) {
+			on_keyboard();
+		}
+		break;
     case WM_DESTROY:
 		img_dispose_decoder();
 		::CoUninitialize();
@@ -84,7 +90,7 @@ LRESULT CALLBACK window_proc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam) 
         break;
     }
 	
-    return (DefWindowProc(hwnd, msg, wparam, lparam));
+    return DefWindowProc(hwnd, msg, wparam, lparam);
 }
 
 static void init_console() {
@@ -169,6 +175,10 @@ HEL_API void device_set_fps(uint fps) {
 
 HEL_API void device_register_draw_func(FUNC draw_func) {
 	on_draw = draw_func;
+}
+
+HEL_API void device_register_keyboard_func(FUNC keyboard_func) {
+	on_keyboard = keyboard_func;
 }
 
 HEL_API void device_log(const char *format, ...) {

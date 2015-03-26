@@ -53,6 +53,7 @@ HEL_API void device_release_colorbuffer(color_buffer *cb);
 
 HEL_API void device_set_fps(uint fps);
 HEL_API void device_register_draw_func(void(*func)());
+HEL_API void device_register_keyboard_func(void(*func)());
 
 HEL_API void device_log(const char *format, ...);
 
