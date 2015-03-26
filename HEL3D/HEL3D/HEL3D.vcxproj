@@ -17,6 +17,7 @@
     <ClInclude Include="inc\framework.h" />
     <ClInclude Include="inc\image.h" />
     <ClInclude Include="inc\helmath.h" />
+    <ClInclude Include="inc\input.h" />
     <ClInclude Include="inc\render_object.h" />
     <ClInclude Include="inc\render_pipeline.h" />
     <ClInclude Include="inc\utils.h" />

@@ -23,6 +23,7 @@ public:
 	HEL_API float get_viewport_width();
 	HEL_API float get_viewport_height();
 	HEL_API virtual void build_matrix();
+	HEL_API void __debug_load_config(const char *path);
 protected:
 	int state_;
 	int attr_;

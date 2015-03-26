@@ -4,6 +4,10 @@
 
 #include <math.h>
 #include <assert.h>
+#include <fstream>
+#include <string>
+#include <vector>
+using namespace std;
 
 camera::camera() {
 	
@@ -128,6 +132,41 @@ HEL_API void camera_euler::build_matrix() {
 	mat_mul_4X4(&mat_y_rotation, &mat_x_rotation, &mat_temp);
 	mat_mul_4X4(&mat_temp, &mat_z_rotation, &mat_rotation);
 	mat_mul_4X4(&mat_translation, &mat_rotation, &mat_camera_);
+}
+
+//for test...
+HEL_API void camera::__debug_load_config(const char *path) {
+	ifstream file(path);
+	string line;
+	getline(file, line);
+	file.close();
+
+	vector<string> tokens;
+	bool inword = false;
+	string token;
+	for (int i = 0; i < line.size(); i++) {
+		char c = line[i];
+		if (c == ' ' || c == '\t' || c== '\n') {
+			if (inword) {
+				inword = false;
+				tokens.push_back(token);
+				token.clear();
+			}
+		}
+		else {
+			inword = true;
+			token += c;
+		}
+	}
+	if (token.size() != 0) {
+		tokens.push_back(token);
+	}
+	if (tokens.size() == 3) {
+		pos_.x = atof(tokens[0].c_str());
+		pos_.y = atof(tokens[1].c_str());
+		pos_.z = atof(tokens[2].c_str());
+		pos_.w = 1;
+	}
 }
 
 HEL_API camera_euler * render_create_camera_euler() {

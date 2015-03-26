@@ -8,12 +8,14 @@
 #include "framework.h"
 #include "common_header.h"
 #include "image.h"
+#include "input.h"
 
 #define WINDOW_CLASS_NAME "WIN_LAUNCHER"
 
-typedef void(*FUNC)();
-static FUNC on_draw;
-static FUNC on_keyboard;
+typedef void(*DRAW_FUNC)();
+static DRAW_FUNC on_draw;
+static MOUSE_FUNC on_mouse;
+static KEYBOARD_FUNC on_keyboard;
 
 static HWND s_Hwnd = NULL;
 static uint s_FPS = 30;
@@ -56,6 +58,11 @@ static void init_ogl(HWND hwnd) {
 	ReleaseDC(hwnd, hdc);
 }
 
+static void get_mouse_xy(LPARAM lParam, int *x, int *y) {
+	*x = (short)(lParam & 0xffff);
+	*y = (short)((lParam >> 16) & 0xffff);
+}
+
 LRESULT CALLBACK window_proc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam) {
     switch (msg) {
     case WM_CREATE:
@@ -76,9 +83,35 @@ LRESULT CALLBACK window_proc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam) 
 			ReleaseDC(hwnd, hdc);
 		}
         return 0;
-	case WM_LBUTTONUP: 
+	case WM_LBUTTONDOWN:
+	case WM_LBUTTONUP:
+	case WM_LBUTTONDBLCLK:
+		if (on_mouse) {
+			int x, y;
+			get_mouse_xy(lparam, &x, &y);	
+			enum mouse_state ms = (enum mouse_state)(msg - WM_LBUTTONDOWN);
+			on_mouse(ms, x, y);
+		}
+		break;
+	case WM_KEYDOWN:
+	case WM_KEYUP:
+	case WM_KEYLAST:
 		if (on_keyboard) {
-			on_keyboard();
+			enum keyboard_state ks;
+			switch (msg) {
+			case WM_KEYDOWN:
+				ks = KEY_DOWN;
+				break;
+			case WM_KEYUP:
+				ks = KEY_UP;
+				break;
+			case WM_KEYLAST:
+				ks = KEY_LAST;
+				break;
+			default:
+				break;
+			}
+			on_keyboard(ks, wparam);
 		}
 		break;
     case WM_DESTROY:
@@ -173,12 +206,16 @@ HEL_API void device_set_fps(uint fps) {
 	}
 }
 
-HEL_API void device_register_draw_func(FUNC draw_func) {
-	on_draw = draw_func;
+HEL_API void device_register_draw_func(DRAW_FUNC func) {
+	on_draw = func;
 }
 
-HEL_API void device_register_keyboard_func(FUNC keyboard_func) {
-	on_keyboard = keyboard_func;
+HEL_API void input_register_mouse_func(MOUSE_FUNC func) {
+	on_mouse = func;
+}
+
+HEL_API void input_register_keyboard_func(KEYBOARD_FUNC func) {
+	on_keyboard = func;
 }
 
 HEL_API void device_log(const char *format, ...) {

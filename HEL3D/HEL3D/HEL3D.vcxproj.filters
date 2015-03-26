@@ -42,6 +42,9 @@
     <ClInclude Include="inc\camera.h">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="inc\input.h">
+      <Filter>inc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\color_buffer.cpp">
