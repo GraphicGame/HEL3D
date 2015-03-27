@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
 #include <math.h>
 #include <iostream>
+#include <string>
 using namespace std;
 
 #include "device.h"
@@ -10,6 +12,7 @@ using namespace std;
 #include "camera.h"
 #include "input.h"
 #include "utils.h"
+#include "log.h"
 
 const int WW = 960;
 const int WH = 640;
@@ -47,7 +50,6 @@ static void on_draw() {
 static void on_mouse(enum mouse_state ms, int x, int y) {
 	RO->load_model("E://simple_model.txt");
 	CAM->__debug_load_config("E://camera_config.txt");
-	cout << x << ":" << y << endl;
 }
 
 static void on_keyboard(enum keyboard_state ks, int code) {
@@ -79,6 +81,10 @@ static void on_keyboard(enum keyboard_state ks, int code) {
 	}
 }
 
+static void log_console(string log) {
+	cout << log << endl;
+}
+
 static void load_img(const char *path) {
 	if (img_data == nullptr) {
 		img_data = new image_data();
@@ -101,16 +107,11 @@ static void setup_render_stuff() {
 		);
 	CAM->__debug_load_config("E://camera_config.txt");
 	CAM->set_target(RO);
-
-	//test and need be deleted.
-	float x = -1;
-	float y = -1;
-	float angle_x = rad_2_deg(asin(y / sqrtf(x * x + y * y)));
-	cout << "x=" << x << ",y=" << y << ", angle_x=" << angle_x;
-	//end test.
 }
 
 int main(int argc, char *argv[]) {
+	log_register_logfunc(log_console);
+
 	CB = device_create_colorbuffer(WW, WH);
 	device_create_window(WW + 30, WH + 30);
 

@@ -109,12 +109,17 @@ HEL_API void camera_euler::build_matrix() {
 		float vy = target_->world_pos_.y - pos_.y;
 		float vz = target_->world_pos_.z - pos_.z;
 
-		vec2 v2xz1(0, 1);
-		vec2 v2xz2(vx, vz);
-		float deg = vec2_angle(&v2xz1, &v2xz2);
-		euler_angle_.y = deg;
+		vec2 v2xz(0, 1);
+		vec2 v2xzp(vx, vz);
+		euler_angle_.y = vec2_angle(&v2xz, &v2xzp);
+		
+		vec2 v2yz(vy, vz);
+		euler_angle_.x = -vec2_angle(&v2xz, &v2yz);
 
-		//log_print("deg=%f\n", {arg(deg)});
+		//vec2 v2xy(1, 0);
+		//vec2 v2xyp(vx, vy);
+		//euler_angle_.z = -vec2_angle(&v2xy, &v2xyp);
+		//TODO...some situation...
 	}
 
 	//YXZ-rotation.
