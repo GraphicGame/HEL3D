@@ -89,13 +89,13 @@
     <ClCompile Include="src\render_pipeline.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="inc\camera.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\plane.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\log.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\camera.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

@@ -25,7 +25,7 @@
     <ClInclude Include="inc\utils.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="inc\camera.cpp" />
+    <ClCompile Include="src\camera.cpp" />
     <ClCompile Include="src\color_buffer.cpp" />
     <ClCompile Include="src\framework.cpp" />
     <ClCompile Include="src\image_win32.cpp" />
