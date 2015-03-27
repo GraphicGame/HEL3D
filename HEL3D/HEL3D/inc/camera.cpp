@@ -1,6 +1,7 @@
 #include "camera.h"
 #include "utils.h"
 #include "helmath.h"
+#include "render_object.h"
 
 #include <math.h>
 #include <assert.h>
@@ -53,7 +54,8 @@ HEL_API void camera::build_matrix() {
 	assert(false);
 }
 
-camera_euler::camera_euler() {
+camera_euler::camera_euler()
+:target_(nullptr) {
 	
 }
 
@@ -101,6 +103,17 @@ HEL_API void camera_euler::build_matrix() {
 	mat_4X4 mat_translation;
 	mat_init_translation_matrix(&mat_translation, -pos_.x, -pos_.y, -pos_.z);
 	
+	if (target_ != nullptr) {
+		float vx = target_->world_pos_.x - pos_.x;
+		float vy = target_->world_pos_.y - pos_.y;
+		float vz = target_->world_pos_.z - pos_.z;
+
+		vec2 v2xz1(0, 1);
+		vec2 v2xz2(vx, vz);
+		float deg = vec2_angle(&v2xz1, &v2xz2);
+		euler_angle_.y = deg;
+	}
+
 	//YXZ-rotation.
 	mat_4X4 mat_rotation;
 	float euler_x = deg_2_rad(euler_angle_.x);
@@ -132,6 +145,14 @@ HEL_API void camera_euler::build_matrix() {
 	mat_mul_4X4(&mat_y_rotation, &mat_x_rotation, &mat_temp);
 	mat_mul_4X4(&mat_temp, &mat_z_rotation, &mat_rotation);
 	mat_mul_4X4(&mat_translation, &mat_rotation, &mat_camera_);
+}
+
+HEL_API const vec4 * camera_euler::get_euler_angle() {
+	return &euler_angle_;
+}
+
+HEL_API void camera_euler::set_target(const render_object *ro) {
+	target_ = ro;
 }
 
 //for test...

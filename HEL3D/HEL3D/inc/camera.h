@@ -4,6 +4,8 @@
 #include "common_header.h"
 #include "helmath.h"
 
+extern struct render_object;
+
 enum camera_type {
 	CAMERA_TYPE_EULER = 0,
 	CAMERA_TYPE_UVN
@@ -62,8 +64,11 @@ public:
 		float near, float far, float fov,
 		float viewport_width, float viewport_height);
 	HEL_API void build_matrix() override;
+	HEL_API const vec4 * get_euler_angle();
+	HEL_API void set_target(const render_object *ro);
 private:
 	vec4 euler_angle_;
+	const render_object *target_;
 };
 
 //TODO...

@@ -1,4 +1,5 @@
 #include "helmath.h"
+#include "utils.h"
 
 #include <math.h>
 
@@ -160,4 +161,28 @@ void vec4_normalize(vec4 *va) {
 	va->y /= len;
 	va->z /= len;
 	va->w /= len;
+}
+
+float vec2_angle(vec2 *va, vec2 *vb) {
+	float va_len = vec2_len(va);
+	float vb_len = vec2_len(vb);
+	float d = vec2_dot(va, vb);
+	float rad = acos(d / (va_len * vb_len));
+	return rad_2_deg(rad);
+}
+
+float vec3_angle(vec3 *va, vec3 *vb) {
+	float va_len = vec3_len(va);
+	float vb_len = vec3_len(vb);
+	float d = vec3_dot(va, vb);
+	float rad = acos(d / (va_len * vb_len));
+	return rad_2_deg(rad);
+}
+
+float vec4_angle(vec4 *va, vec4 *vb) {
+	float va_len = vec4_len(va);
+	float vb_len = vec4_len(vb);
+	float d = vec4_dot(va, vb);
+	float rad = acos(d / (va_len * vb_len));
+	return rad_2_deg(rad);
 }

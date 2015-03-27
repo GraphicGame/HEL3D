@@ -73,6 +73,10 @@ void vec2_normalize(vec2 *va);
 void vec3_normalize(vec3 *va);
 void vec4_normalize(vec4 *va);
 
+float vec2_angle(vec2 *va, vec2 *vb);
+float vec3_angle(vec3 *va, vec3 *vb);
+float vec4_angle(vec4 *va, vec4 *vb);
+
 //matrix...
 typedef struct mat_4X4 {
 	union {
