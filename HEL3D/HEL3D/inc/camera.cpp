@@ -2,6 +2,7 @@
 #include "utils.h"
 #include "helmath.h"
 #include "render_object.h"
+#include "log_internal.h"
 
 #include <math.h>
 #include <assert.h>
@@ -112,6 +113,8 @@ HEL_API void camera_euler::build_matrix() {
 		vec2 v2xz2(vx, vz);
 		float deg = vec2_angle(&v2xz1, &v2xz2);
 		euler_angle_.y = deg;
+
+		//log_print("deg=%f\n", {arg(deg)});
 	}
 
 	//YXZ-rotation.

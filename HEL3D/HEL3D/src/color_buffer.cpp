@@ -1,4 +1,5 @@
 #include "device.h"
+#include "log_internal.h"
 
 #include <assert.h>
 #include <memory.h>
@@ -126,7 +127,7 @@ void color_buffer::_write_BGR_2_colorbuffer(image_data *img, uint start_x, uint 
 HEL_API void color_buffer::write_pixels(image_data *img, uint start_x, uint start_y) {
 	switch (img->format) {
 	case IMG_FORMAT_NULL:
-		device_log("img format error...");
+		log_print("img format error...");
 		break;
 	case IMG_FORMAT_RGBA:
 		_write_RGBA_2_colorbuffer(img, start_x, start_y);

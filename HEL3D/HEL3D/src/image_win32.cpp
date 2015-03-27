@@ -1,6 +1,7 @@
 #include "image.h"
 #include "device.h"
 #include "utils.h"
+#include "log_internal.h"
 
 #include <windows.h>
 #include <wincodec.h>
@@ -25,7 +26,7 @@ HEL_API void img_init_decoder() {
 			IID_PPV_ARGS(&s_decoder->factory)
 			);
 		if (hr != S_OK) {
-			device_log("Failed to load WIC");
+			log_print("Failed to load WIC");
 			exit(1);
 		}
 	}
@@ -69,7 +70,7 @@ HEL_API int img_decode_image(const char *path, image_data *data) {
 			&s_decoder->decoder
 		);
 	if (hr != S_OK) {
-		device_log("WIC create decoder failed from the file:[%s]", path);
+		log_print("WIC create decoder failed from the file:[%s]", {arg(path)});
 		return -1;
 	}
 
@@ -78,7 +79,7 @@ HEL_API int img_decode_image(const char *path, image_data *data) {
 
 	hr = s_decoder->decoder->GetFrame(0, &s_decoder->frame);
 	if (hr != S_OK) {
-		device_log("WIC decode image failed! the filename is:[%s]", path);
+		log_print("WIC decode image failed! the filename is:[%s]", { arg(path) });
 		return -1;
 	}
 
@@ -109,7 +110,7 @@ HEL_API int img_decode_image(const char *path, image_data *data) {
 	}
 	else {
 		data->format = IMG_FORMAT_NULL;
-		device_log("WIC Unsupport image format! the filename is:[%s]", path);
+		log_print("WIC Unsupport image format! the filename is:[%s]", {arg(path)});
 		return -1;
 	}
 
@@ -125,7 +126,7 @@ HEL_API int img_decode_image(const char *path, image_data *data) {
 			data->pixels
 		);
 	if (hr != S_OK) {
-		device_log("WIC copyPixels error! the filename is:[%s]", path);
+		log_print("WIC copyPixels error! the filename is:[%s]", {arg(path)});
 		return -1;
 	}
 

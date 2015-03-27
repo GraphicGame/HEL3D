@@ -18,6 +18,8 @@
     <ClInclude Include="inc\image.h" />
     <ClInclude Include="inc\helmath.h" />
     <ClInclude Include="inc\input.h" />
+    <ClInclude Include="inc\log_internal.h" />
+    <ClInclude Include="inc\log.h" />
     <ClInclude Include="inc\render_object.h" />
     <ClInclude Include="inc\render_pipeline.h" />
     <ClInclude Include="inc\utils.h" />
@@ -27,6 +29,7 @@
     <ClCompile Include="src\color_buffer.cpp" />
     <ClCompile Include="src\framework.cpp" />
     <ClCompile Include="src\image_win32.cpp" />
+    <ClCompile Include="src\log.cpp" />
     <ClCompile Include="src\matrix.cpp" />
     <ClCompile Include="src\plane.cpp" />
     <ClCompile Include="src\primitives.cpp" />

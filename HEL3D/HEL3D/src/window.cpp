@@ -127,11 +127,11 @@ LRESULT CALLBACK window_proc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam) 
 }
 
 static void init_console() {
-	AllocConsole();
+	/*AllocConsole();
 	FILE *new_file;
 	freopen_s(&new_file, "CONIN$", "r", stdin);
 	freopen_s(&new_file, "CONOUT$", "w", stdout);
-	freopen_s(&new_file, "CONOUT$", "w", stderr);
+	freopen_s(&new_file, "CONOUT$", "w", stderr);*/
 }
 
 HEL_API bool device_create_window(uint width, uint height) {
@@ -143,7 +143,7 @@ HEL_API bool device_create_window(uint width, uint height) {
 	s_WindowWidth = width;
 	s_WindowHeight = height;
 
-	init_console();
+	//init_console();
 
 	WNDCLASSEX winclass;
 	HWND hwnd;
@@ -216,12 +216,4 @@ HEL_API void input_register_mouse_func(MOUSE_FUNC func) {
 
 HEL_API void input_register_keyboard_func(KEYBOARD_FUNC func) {
 	on_keyboard = func;
-}
-
-HEL_API void device_log(const char *format, ...) {
-	va_list ap;
-	va_start(ap, format);
-	printf(format, ap);
-	va_end(ap);
-	exit(1);
 }

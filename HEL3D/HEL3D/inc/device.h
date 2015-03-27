@@ -54,8 +54,6 @@ HEL_API void device_release_colorbuffer(color_buffer *cb);
 HEL_API void device_set_fps(uint fps);
 HEL_API void device_register_draw_func(void(*func)());
 
-HEL_API void device_log(const char *format, ...);
-
 HEL_API void device_draw_line(color_buffer *cb, int x0, int y0, int x1, int y1, color c);
 
 #ifdef __cplusplus
