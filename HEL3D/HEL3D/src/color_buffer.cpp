@@ -10,6 +10,38 @@
 const int CB_MAX_W = 3000;
 const int CB_MAX_H = 3000;
 
+color::color() {
+	
+}
+
+color::color(uint _r, uint _g, uint _b, uint _a)
+:r(_r), g(_g), b(_b), a(_a) {
+}
+
+void color::modulate(float s) {
+	uint tr = r;
+	uint tg = g;
+	uint tb = b;
+	tr *= s;
+	tg *= s;
+	tb *= s;
+	if (tr > 255 || tg > 255 || tb > 255) {
+		return;
+	}
+	r = tr;
+	g = tg;
+	b = tb;
+}
+
+void color::add(const color &c) {
+	r += c.r;
+	r = (r > 255) ? 255 : r;
+	g += c.g;
+	g = (g > 255) ? 255 : g;
+	b += c.b;
+	b = (b > 255) ? 255 : b;
+}
+
 color_buffer::color_buffer(uint width, uint height) 
 :width_(width), height_(height), dirty_(true), pixels_(nullptr)
 {

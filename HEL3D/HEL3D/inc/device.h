@@ -11,11 +11,11 @@ extern "C" {
 class color {
 public:
 	uint r, g, b, a;
-	color() {}
-	color(uint _r, uint _g, uint _b, uint _a)
-		:r(_r), g(_g), b(_b), a(_a)
-	{	
-	}
+	color();
+	color(uint _r, uint _g, uint _b, uint _a);
+
+	void modulate(float s);
+	void add(const color &c);
 };
 
 class color_buffer {

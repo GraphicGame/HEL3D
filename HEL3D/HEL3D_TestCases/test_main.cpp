@@ -1,3 +1,5 @@
+//#define __exec
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
@@ -14,14 +16,14 @@ using namespace std;
 #include "utils.h"
 #include "log.h"
 
-const int WW = 960;
-const int WH = 640;
+static const int WW = 960;
+static const int WH = 640;
 
-color ClearColor = {0, 0, 0, 255};
-color_buffer *CB = nullptr;
-image_data *img_data = nullptr;
-render_object *RO = nullptr;
-camera_euler *CAM = nullptr;
+static color ClearColor = {0, 0, 0, 255};
+static color_buffer *CB = nullptr;
+static image_data *img_data = nullptr;
+static render_object *RO = nullptr;
+static camera_euler *CAM = nullptr;
 
 static void on_draw() {
 	CB->clear(ClearColor);
@@ -109,6 +111,7 @@ static void setup_render_stuff() {
 	CAM->set_target(RO);
 }
 
+#ifdef __exec
 int main(int argc, char *argv[]) {
 	log_register_logfunc(log_console);
 
@@ -127,3 +130,4 @@ int main(int argc, char *argv[]) {
 	getchar();
 	return 0;
 }
+#endif
