@@ -42,6 +42,13 @@ void color::add(const color &c) {
 	b = (b > 255) ? 255 : b;
 }
 
+void color::alpha_blend(const color &c) {
+	float _a = a / 255.0f;
+	r = r * _a + c.r * (1 - _a);
+	g = g * _a + c.g * (1 - _a);
+	b = b * _a + c.b * (1 - _a);
+}
+
 color_buffer::color_buffer(uint width, uint height) 
 :width_(width), height_(height), dirty_(true), pixels_(nullptr)
 {
@@ -54,15 +61,19 @@ color_buffer::~color_buffer() {
 	delete buffer_;
 }
 
-HEL_API void color_buffer::write_color(uint x, uint y, color c) {
+HEL_API void color_buffer::write_color(uint x, uint y, color c, uint alpha/*=255*/) {
 	if (x < 0 || x >= width_ || y < 0 || y >= height_) {
 		return;
 	}
 	uint i = y * width_ + x;
+	if (c.a != 255) {
+		color *origin_c = &buffer_[i];
+		c.alpha_blend(*origin_c);
+	}
 	buffer_[i] = c;
 }
 
-void color_buffer::_write_RGBA_2_colorbuffer(image_data *img, uint start_x, uint start_y) {
+void color_buffer::_write_RGBA_2_colorbuffer(image_data *img, uint start_x, uint start_y, uint alpha) {
 	uchar *pixels = img->pixels;
 	uint img_w = img->width;
 	uint img_h = img->height;
@@ -78,15 +89,11 @@ void color_buffer::_write_RGBA_2_colorbuffer(image_data *img, uint start_x, uint
 		uint iy = i / 4 / img_w;
 		uint bx = ix + start_x;
 		uint by = iy + start_y;
-		uint b_index = by * width_ + bx;
-		if (b_index >= cb_sz) {
-			continue;
-		}
-		buffer_[b_index] = color(r, g, b, a);
+		write_color(bx, by, color(r, g, b, alpha));
 	}
 }
 
-void color_buffer::_write_BGRA_2_colorbuffer(image_data *img, uint start_x, uint start_y) {
+void color_buffer::_write_BGRA_2_colorbuffer(image_data *img, uint start_x, uint start_y, uint alpha) {
 	uchar *pixels = img->pixels;
 	uint img_w = img->width;
 	uint img_h = img->height;
@@ -102,15 +109,11 @@ void color_buffer::_write_BGRA_2_colorbuffer(image_data *img, uint start_x, uint
 		uint iy = i / 4 / img_w;
 		uint bx = ix + start_x;
 		uint by = iy + start_y;
-		uint b_index = by * width_ + bx;
-		if (b_index >= cb_sz) {
-			continue;
-		}
-		buffer_[b_index] = color(r, g, b, a);
+		write_color(bx, by, color(r, g, b, alpha));
 	}
 }
 
-void color_buffer::_write_RGB_2_colorbuffer(image_data *img, uint start_x, uint start_y) {
+void color_buffer::_write_RGB_2_colorbuffer(image_data *img, uint start_x, uint start_y, uint alpha) {
 	uchar *pixels = img->pixels;
 	uint img_w = img->width;
 	uint img_h = img->height;
@@ -125,15 +128,11 @@ void color_buffer::_write_RGB_2_colorbuffer(image_data *img, uint start_x, uint 
 		uint iy = i / 3 / img_w;
 		uint bx = ix + start_x;
 		uint by = iy + start_y;
-		uint b_index = by * width_ + bx;
-		if (b_index >= cb_sz) {
-			continue;
-		}
-		buffer_[b_index] = color(r, g, b, 255);
+		write_color(bx, by, color(r, g, b, alpha));
 	}
 }
 
-void color_buffer::_write_BGR_2_colorbuffer(image_data *img, uint start_x, uint start_y) {
+void color_buffer::_write_BGR_2_colorbuffer(image_data *img, uint start_x, uint start_y, uint alpha) {
 	uchar *pixels = img->pixels;
 	uint img_w = img->width;
 	uint img_h = img->height;
@@ -148,30 +147,26 @@ void color_buffer::_write_BGR_2_colorbuffer(image_data *img, uint start_x, uint 
 		uint iy = i / 3 / img_w;
 		uint bx = ix + start_x;
 		uint by = iy + start_y;
-		uint b_index = by * width_ + bx;
-		if (b_index >= cb_sz) {
-			continue;
-		}
-		buffer_[b_index] = color(r, g, b, 255);
+		write_color(bx, by, color(r, g, b, alpha));
 	}
 }
 
-HEL_API void color_buffer::write_pixels(image_data *img, uint start_x, uint start_y) {
+HEL_API void color_buffer::write_pixels(image_data *img, uint start_x, uint start_y, uint alpha /*=255*/) {
 	switch (img->format) {
 	case IMG_FORMAT_NULL:
 		log_print("img format error...");
 		break;
 	case IMG_FORMAT_RGBA:
-		_write_RGBA_2_colorbuffer(img, start_x, start_y);
+		_write_RGBA_2_colorbuffer(img, start_x, start_y, alpha);
 		break;
 	case IMG_FORMAT_BGRA:
-		_write_BGRA_2_colorbuffer(img, start_x, start_y);
+		_write_BGRA_2_colorbuffer(img, start_x, start_y, alpha);
 		break;
 	case IMG_FORMAT_RGB:
-		_write_RGB_2_colorbuffer(img, start_x, start_y);
+		_write_RGB_2_colorbuffer(img, start_x, start_y, alpha);
 		break;
 	case IMG_FORMAT_BGR:
-		_write_BGR_2_colorbuffer(img, start_x, start_y);
+		_write_BGR_2_colorbuffer(img, start_x, start_y, alpha);
 		break;
 	default:
 		break;

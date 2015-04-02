@@ -16,6 +16,7 @@ public:
 
 	void modulate(float s);
 	void add(const color &c);
+	void alpha_blend(const color &c);
 };
 
 class color_buffer {
@@ -23,8 +24,8 @@ public:
 	color_buffer(uint width, uint height);
 	~color_buffer();
 public:
-	HEL_API void write_color(uint x, uint y, color c);
-	HEL_API void write_pixels(image_data *img, uint start_x, uint start_y);
+	HEL_API void write_color(uint x, uint y, color c, uint alpha = 255);
+	HEL_API void write_pixels(image_data *img, uint start_x, uint start_y, uint alpha = 255);
 	HEL_API void read_color(uint x, uint y, color *c);
 	HEL_API void set_clear_color(color c);
 	HEL_API void clear(color c);
@@ -33,10 +34,10 @@ private:
 	void _gen_pixels();
 	bool dirty_; //TODO 
 
-	void _write_RGBA_2_colorbuffer(image_data *img, uint start_x, uint start_y);
-	void _write_BGRA_2_colorbuffer(image_data *img, uint start_x, uint start_y);
-	void _write_RGB_2_colorbuffer(image_data *img, uint start_x, uint start_y);
-	void _write_BGR_2_colorbuffer(image_data *img, uint start_x, uint start_y);
+	void _write_RGBA_2_colorbuffer(image_data *img, uint start_x, uint start_y, uint alpha);
+	void _write_BGRA_2_colorbuffer(image_data *img, uint start_x, uint start_y, uint alpha);
+	void _write_RGB_2_colorbuffer(image_data *img, uint start_x, uint start_y, uint alpha);
+	void _write_BGR_2_colorbuffer(image_data *img, uint start_x, uint start_y, uint alpha);
 
 private:
 	uint width_;

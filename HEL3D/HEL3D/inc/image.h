@@ -38,7 +38,7 @@ public:
 
 HEL_API void img_init_decoder();
 HEL_API void img_dispose_decoder();
-HEL_API int img_decode_image(const char *path, image_data *data);
+HEL_API int img_load_image(const char *path, image_data *data);
 
 #ifdef __cplusplus
 }

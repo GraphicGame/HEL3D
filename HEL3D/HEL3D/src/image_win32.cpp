@@ -56,7 +56,7 @@ static uint _get_image_stride(uint width, uint bpp) {
 }
 
 //TODO : need a relative path !
-HEL_API int img_decode_image(const char *path, image_data *data) {
+HEL_API int img_load_image(const char *path, image_data *data) {
 	if (s_decoder == nullptr) {
 		img_init_decoder();
 	}
